@@ -1,0 +1,24 @@
+{
+  "name": "z-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahul021298/z-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahul021298/z-assignment/issues"
+  },
+  "homepage": "https://github.com/rahul021298/z-assignment#readme",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
