@@ -1,6 +1,6 @@
 import { PRODUCTS, PricingRule } from "./constants";
 
-class Checkout {
+export class Checkout {
     private pricingRules: Record<string, PricingRule>;
     private scannedItems = new Map<string, number>();
 
@@ -27,8 +27,10 @@ class Checkout {
     total(): number {
         let totalCost = 0;
         this.scannedItems.forEach((quantity, skuId) => {
-            const price = this.calculateItemPrice(skuId, quantity);
-            totalCost += price;
+            if (quantity > 0) {
+                const price = this.calculateItemPrice(skuId, quantity);
+                totalCost += price;
+            }
         });
         console.log(`Total Price: $${totalCost}`);
         return totalCost;
@@ -36,7 +38,7 @@ class Checkout {
 }
 
 
-const pricingRules: Record<string, PricingRule> = {
+export const pricingRules: Record<string, PricingRule> = {
     atv: {
         price: PRODUCTS.atv.price,
         discountFunction: (price, quantity) => Math.floor(quantity / 3) * 2 * price + (quantity % 3) * price,
@@ -50,11 +52,11 @@ const pricingRules: Record<string, PricingRule> = {
 };
 
 const co1 = new Checkout(pricingRules);
-const co2 = new Checkout(pricingRules);
-
 co1.scan('atv', 3);
 co1.scan('vga');
+co1.total();
+
+const co2 = new Checkout(pricingRules);
 co2.scan('atv', 2);
 co2.scan('ipd', 5);
-co1.total();
 co2.total();
